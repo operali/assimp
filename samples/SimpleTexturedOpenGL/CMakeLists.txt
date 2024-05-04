@@ -1,3 +1,9 @@
+cmake_minimum_required(VERSION 3.10)
+project(assimp_simpleogl)
+
+
+set(Assimp_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../build")
+
 FIND_PACKAGE(OpenGL)
 FIND_PACKAGE(GLUT)
 
@@ -33,7 +39,7 @@ ADD_EXECUTABLE( assimp_simpletexturedogl WIN32
   SimpleTexturedOpenGL/src/model_loading.cpp
 )
 
-TARGET_USE_COMMON_OUTPUT_DIRECTORY(assimp_simpletexturedogl)
+# TARGET_USE_COMMON_OUTPUT_DIRECTORY(assimp_simpletexturedogl)
 
 SET_PROPERTY(TARGET assimp_simpletexturedogl PROPERTY DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
 

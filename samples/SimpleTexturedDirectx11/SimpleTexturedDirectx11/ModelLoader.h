@@ -4,7 +4,6 @@
 #include <vector>
 #include <d3d11_1.h>
 #include <DirectXMath.h>
-
 #include <assimp\Importer.hpp>
 #include <assimp\scene.h>
 #include <assimp\postprocess.h>

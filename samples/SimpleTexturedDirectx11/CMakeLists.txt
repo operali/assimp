@@ -1,3 +1,12 @@
+cmake_minimum_required(VERSION 3.10)
+project(assimp_simple_dx11)
+
+set(Assimp_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../..")
+set(Assimp_CONFIG_DIR "${Assimp_SOURCE_DIR}/build")
+
+set(Assimp_BINARY_DIR "Assimp_SOURCE_DIR/build/bin/RelWithDebInfo")
+message(STATUS "------${Assimp_SOURCE_DIR}")
+
 FIND_PACKAGE(DirectX)
 
 IF ( MSVC )
@@ -16,6 +25,7 @@ endif ()
 ADD_COMPILE_DEFINITIONS(SHADER_PATH="${CMAKE_CURRENT_SOURCE_DIR}/SimpleTexturedDirectx11/")
 
 INCLUDE_DIRECTORIES(
+  ${Assimp_CONFIG_DIR}/include
   ${Assimp_SOURCE_DIR}/include
   ${Assimp_SOURCE_DIR}/code
   ${SAMPLES_SHARED_CODE_DIR}
@@ -24,7 +34,7 @@ INCLUDE_DIRECTORIES(
 
 LINK_DIRECTORIES(
   ${Assimp_BINARY_DIR}
-  ${Assimp_BINARY_DIR}/lib
+  ${Assimp_SOURCE_DIR}/lib
 )
 
 ADD_EXECUTABLE( assimp_simpletextureddirectx11 WIN32
@@ -39,7 +49,7 @@ ADD_EXECUTABLE( assimp_simpletextureddirectx11 WIN32
   SimpleTexturedDirectx11/SafeRelease.hpp
 )
 
-TARGET_USE_COMMON_OUTPUT_DIRECTORY(assimp_simpletextureddirectx11)
+# TARGET_USE_COMMON_OUTPUT_DIRECTORY(assimp_simpletextureddirectx11)
 
 SET_PROPERTY(TARGET assimp_simpletextureddirectx11 PROPERTY DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
 
