@@ -490,7 +490,7 @@ void RenderFrame(void)
 	ULONGLONG timeCur = GetTickCount64();
 	if (timeStart == 0)
 		timeStart = timeCur;
-	t = (timeCur - timeStart) / 1000.0f;
+	t = (timeCur - timeStart) / 5000.0f;
 
 	float clearColor[4] = { 0.0f, 0.2f, 0.4f, 1.0f };
 	devcon->ClearRenderTargetView(backbuffer, clearColor);
@@ -498,7 +498,11 @@ void RenderFrame(void)
 
 	devcon->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-	m_World = XMMatrixRotationY(-t);
+	m_World = XMMatrixScaling(25, 25, 25) * XMMatrixRotationY(-t) * XMMatrixTranslation(0, 50, 0);
+
+	
+    
+
 
 	ConstantBuffer cb;
 	cb.mWorld = XMMatrixTranspose(m_World);
@@ -568,7 +572,7 @@ void InitGraphics()
 	if (FAILED(hr))
 		Throwanerror("Texture sampler state couldn't be created");
 
-	XMVECTOR Eye = XMVectorSet(0.0f, 5.0f, -300.0f, 0.0f);
+	XMVECTOR Eye = XMVectorSet(0.0f, 300.0f, -300.0f, 0.0f);
 	XMVECTOR At = XMVectorSet(0.0f, 100.0f, 0.0f, 0.0f);
 	XMVECTOR Up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 	m_View = XMMatrixLookAtLH(Eye, At, Up);
